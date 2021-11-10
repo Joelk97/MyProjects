@@ -1,0 +1,20 @@
+from tkinter import *
+
+root = Tk()
+
+
+def cosa_mangio():
+  pass
+
+
+def nuovo_pasto():
+  pass
+
+
+def lista_spesa(pasto):
+  pass
+  
+  
+def assegna_punteggio(pasto):
+  pass
+  
