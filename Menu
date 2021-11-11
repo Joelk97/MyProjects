@@ -3,6 +3,13 @@ from tkinter import *
 root = Tk()
 
 
+def set_label(my_label, rowa=0, columna=0, texta=""):
+  my_label = Label(root, text=texta)
+  my_label.grid(row=rowa, column=columna)
+  
+  
+
+
 def cosa_mangio():
   pass
 
