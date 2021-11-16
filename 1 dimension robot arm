@@ -21,8 +21,46 @@ block.color('red')
 block.penup()
 block.goto(-290, 0)
 
+inst1 = turtle.Turtle()
+inst1.speed(0)
+inst1.color('white')
+inst1.hideturtle()
+inst1.goto(0, 100)
+inst1.penup()
+inst1.write("force 1 = a\tforce 2 = s\tforce 3 = d\tforce 4 = f", align='center', font=('Courier',24,'normal'))
+
+inst2 = turtle.Turtle()
+inst2.speed(0)
+inst2.color('white')
+inst2.hideturtle()
+inst2.goto(0, 90)
+inst2.penup()
+inst2.write("After choosing the force tap Enter", align='center', font=('Courier',24,'normal'))
+
+
+def force1():
+  arm.speed(1)
+  arm.forward(20)
+  
+def force2():
+  arm.speed(2)
+  arm.forward(20)
+
+def force3():
+  arm.speed(3)
+  arm.forward(20)
+
+def force4():
+  arm.speed(4)
+  arm.forward(20)
+
+win.listen()
+win.onkey(force1, 'a')
+win.onkey(force2, 's')
+win.onkey(force3, 'd')
+win.onkey(force4, 'f')
 
 
 while True:
   win.update()
-
+  
