@@ -1,10 +1,27 @@
 import turtle
 
-win = turtle.Screen()
-win.title('Robot-Arm')
-win.bgcolor('black')
-win.tracer(0)
-win.setup(width=600, height=600)
+win = turtle.Screen()         # Bildschirm erstellen
+win.title('Roboter-Arm')      # Titel erstellen
+win.bgcolor('black')          # Hintergrundfarbe
+win.tracer(0)                 # ???
+win.setup(width=600, height=300)        # Grösse des Fensters einstellen
+
+arm = turtle.Turtle()         # Turtle Objekt erstellen
+arm.shape('square')           # Form der Turtle
+arm.speed(0)                  # Turtle fixieren
+arm.shapesize(stretch_wid=1, stretch_len=5)       # Turtle stretchen
+arm.penup()                   # ???
+arm.color('white')            # Farbe Einstellen 
+arm.goto(-300, 0)             # Arm Positionieren
+
+block = turtle.Turtle()
+block.shape('square')
+block.speed(0)
+block.color('red')
+block.penup()
+block.goto(-290, 0)
+
+
 
 while True:
   win.update()
