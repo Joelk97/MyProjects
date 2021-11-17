@@ -1,0 +1,34 @@
+import pygame
+import os
+
+WIDTH, HEIGHT = 900, 500
+ARM_WIDTH, ARM_HEIGHT = 50, 50
+WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("1d Roboterarm")
+WHITE = (255, 255, 255)
+FPS = 60
+ROBOTER_ARM_IMAGE = pygame.image.load(os.path.join('Nome_Cartella','Nome_File'))
+ROBOTER_ARM = pygame.transform.scale(ROBOTER_ARM_IMAGE, (ARM_WIDTH, ARM_HEIGHT))
+
+def draw_window():
+  WIN.fill(WHITE)
+  WIN.blit(ROBOTER_ARM_IMAGE, (0, 250))
+  pygame.display.update()
+
+
+def main():
+  arm = pygame.Rect(0, 250, ARM_WIDTH, ARM_HEIGHT)
+  clock = pygame.time.Clock()
+  run = True
+  while run:
+    clock.tick(FPS)
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        run = False
+        
+    key_pressed = pygame.key.get_pressed()
+    draw_window()
+  pygame.quit()
+
+if __name__ == "__main__":
+  main()
