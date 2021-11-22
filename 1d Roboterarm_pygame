@@ -19,8 +19,8 @@ ROBOTER_ARM = pygame.transform.scale(ROBOTER_ARM_IMAGE, (ARM_WIDTH, ARM_HEIGHT))
 def draw_window():
     WIN.fill(WHITE)
     pygame.draw.rect(WIN, BLACK, BODEN)
-    WIN.blit(ROBOTER_ARM, (0, 190))
-    WIN.blit(BLOCK, (150, 220))
+    WIN.blit(ROBOTER_ARM, (arm.x, arm.y))
+    WIN.blit(BLOCK, (block.x, block.y))
     pygame.display.update()
 
 
@@ -37,8 +37,9 @@ def set_force():
     return force
 
 
-def main():
-    arm = pygame.Rect(0, 250, ARM_WIDTH, ARM_HEIGHT)
+def main(arm, block):
+    arm = pygame.Rect(0, 190, ARM_WIDTH, ARM_HEIGHT)
+    block = pygame.Rect(150, 220, BLOCK_WIDTH, BLOCK_HEIGHT)
     clock = pygame.time.Clock()
     run = True
     while run:
@@ -46,7 +47,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-        draw_window()
+        draw_window(arm, block)
     pygame.quit()
 
 
