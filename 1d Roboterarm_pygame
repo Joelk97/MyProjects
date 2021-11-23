@@ -1,5 +1,7 @@
 import pygame
 import os
+import numpy as np
+import gym
 
 WIDTH, HEIGHT = 900, 500
 ARM_WIDTH, ARM_HEIGHT = 150, 100
@@ -23,18 +25,8 @@ def draw_window():
     WIN.blit(BLOCK, (block.x, block.y))
     pygame.display.update()
 
-
-def set_force():
-    key_pressed = pygame.key.get_pressed()
-    if key_pressed[pygame.K_a]:
-        force = 1
-    if key_pressed[pygame.K_s]:
-        force = 2
-    if key_pressed[pygame.K_d]:
-        force = 3
-    if key_pressed[pygame.K_f]:
-        force = 4
-    return force
+def handle_block():
+    
 
 
 def main(arm, block):
