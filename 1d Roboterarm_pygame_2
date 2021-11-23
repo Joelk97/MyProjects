@@ -9,4 +9,25 @@ class CustomEnv(gym.Env):
   def __init__(self, env_config={}):
     # self.observation_space = gym.spaces.Box()
     # self.action_space = gym.spaces.Box()
-    self.x = 
+    self.x = 150
+    self.y = 220
+    self.vel_x = 0
+
+  def init_render(self):
+    import pygame
+    pygame.init()
+    self.WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+    self.clock = pygame.time.Clock()
+
+  def reset(self):
+    # reset the environment to initial state
+    return observation
+
+  def step(self, action=np.zeros((1),dtype=np.float)):
+    # action = initial force
+    
+    # apply Acceleration
+    acceleration = action[0]
+    
+    
+    
