@@ -75,6 +75,21 @@ def pressed_to_action(key_pressed):
     if key_pressed[pygame.K_RIGHT]:
       right_pressed = True
     return np.array([action_force, clicked_times])
+
+env = CustomEnv()
+env.init_render()
+run = True
+while run:
+  env.clock.tick(FPS)
+  get_event = pygame.event.get()
+  for event in get_event: 
+    if event.type == pygame.QUIT():
+      run = False
+  get_pressed = pygame.key.get_pressed()
+  action = pressed_to_action(get_pressed)
+  env.step(action)
+  env.render(arm, block)
+pygame.quit()
  
    
     
