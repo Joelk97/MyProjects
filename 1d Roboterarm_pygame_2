@@ -4,6 +4,20 @@ import gym
 import os
 
 WIDTH, HEIGHT = 900, 500
+ARM_WIDTH, ARM_HEIGHT = 150, 100
+BLOCK_WIDTH, BLOCK_HEIGHT = 50, 50
+REIBUNG = 0.3
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+FPS = 60
+BODEN = pygame.Rect(0, 270, WIDTH, 10)
+ROBOTER_ARM_IMAGE = pygame.image.load(os.path.join('Bilder', 'Roboterarm.png'))
+BLOCK_IMAGE = pygame.image.load(os.path.join('Bilder', 'item.gif'))
+BLOCK = pygame.transform.scale(BLOCK_IMAGE, (BLOCK_WIDTH, BLOCK_HEIGHT))
+ROBOTER_ARM = pygame.transform.scale(ROBOTER_ARM_IMAGE, (ARM_WIDTH, ARM_HEIGHT))
+arm = pygame.Rect(0, 190, ARM_WIDTH, ARM_HEIGHT)
+block = pygame.Rect(150, 220, BLOCK_WIDTH, BLOCK_HEIGHT)
+
 
 class CustomEnv(gym.Env):
   def __init__(self, env_config={}):
@@ -23,11 +37,45 @@ class CustomEnv(gym.Env):
     # reset the environment to initial state
     return observation
 
-  def step(self, action=np.zeros((1),dtype=np.float)):
+  def step(self, action=np.zeros((2),dtype=np.float)):      # Darf man ein 1d Array erstellen?
     # action = initial force
+ 
     
     # apply Acceleration
-    acceleration = action[0]
-    
+    force = action[0]
+    vel_init = force * 10                # Anfangsgeschwindigkeit hängt von der eingestellten Kraft ab
+    acceleration = -1 * REIBUNG
+    stopped = False
+    self.vel_x = vel_init
+    while (not stopped):
+      self.vel_x = self.vel_x + acceleration
+      self.x = self.x + self.vel_x
+      if self.vel_x <= 0.:
+        stopped = True
+
+    observation, reward, done, info = 0., 0., False, {}
+    return observation, reward, done, info
+
+  def render(self, arm, block):
+    self.WIN.fill(WHITE)
+    WIN.fill(WHITE)
+    pygame.draw.rect(WIN, BLACK, BODEN)
+    WIN.blit(ROBOTER_ARM, (arm.x, arm.y))
+    WIN.blit(BLOCK, (block.x, block.y))
+    pygame.display.update()
+
+def pressed_to_action(key_pressed):
+  action_force = 0.
+  clicked_times = 0.
+  right_pressed = False
+  while (not right_pressed):
+    if key_pressed[pygame.K_UP]:
+      action_force += 0.1
+      clicked_times += 1
+    if key_pressed[pygame.K_RIGHT]:
+      right_pressed = True
+    return np.array([action_force, clicked_times])
+ 
+   
     
     
