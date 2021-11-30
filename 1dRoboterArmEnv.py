@@ -75,6 +75,8 @@ class CustomEnv(gym.Env):
         return self.state, reward, done, info
 
     def render(self, arm, c_times=0):
+        init_render()
+        self.clock.tick(FPS)
         self.WIN.fill(WHITE)
         self.WIN.blit(ROBOTER_ARM, (arm.x, arm.y))
         pygame.draw.circle(self.WIN, RED, (position_goal_x, position_goal_y), 6)
@@ -83,7 +85,9 @@ class CustomEnv(gym.Env):
         img = text_force.render("Set force: {}".format(str(round(c_times))), True, BLUE)
         self.WIN.blit(img, (200, 20))
         pygame.display.update()
-
+        if self.vel_x == 0
+            time.sleep(2)
+            pygame.quit()
 
 '''env = CustomEnv()
 env.init_render()
